@@ -13,6 +13,7 @@ from toga_iOS.libs import (
     UIColor,
     UIControlEventEditingChanged,
     UILabel,
+    UITextAutocorrectionType,
     UITextBorderStyle,
     UITextField,
 )
@@ -49,6 +50,8 @@ class TextInput(Widget):
         self.native.delegate = self.native
 
         self.native.borderStyle = UITextBorderStyle.RoundedRect
+
+        self.native.autocorrectionType = UITextAutocorrectionType.Default
 
         self.native.addTarget(
             self.native,
@@ -156,3 +159,16 @@ class TextInput(Widget):
 
     def is_valid(self):
         return self.error_label.isHidden()
+
+    def set_autocorrection_type(self, value):
+        if isinstance(value, str):
+            if value.lower() == "yes":
+                self.native.autocorrectionType = UITextAutocorrectionType.Yes
+            elif value.lower() == "no":
+                self.native.autocorrectionType = UITextAutocorrectionType.No
+            elif value.lower() == "default":
+                self.native.autocorrectionType = UITextAutocorrectionType.Default
+            else:
+                raise ValueError('value can only be "Yes", "No" or "Default"')
+        else:
+            raise ValueError('value can only be "Yes", "No" or "Default"')

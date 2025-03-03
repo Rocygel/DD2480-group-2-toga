@@ -470,6 +470,12 @@ class UIKeyboardType(Enum):
     ASCIICapableNumberPad = 11
 
 
+class UITextAutocorrectionType(Enum):
+    Default = 0
+    No = 1
+    Yes = 2
+
+
 ######################################################################
 # UITextView.h
 UITextView = ObjCClass("UITextView")

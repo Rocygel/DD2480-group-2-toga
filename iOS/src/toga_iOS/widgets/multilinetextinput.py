@@ -14,6 +14,7 @@ from toga_iOS.libs import (
     NSTextAlignment,
     UIKeyInput,
     UILabel,
+    UITextAutocorrectionType,
     UITextView,
 )
 from toga_iOS.widgets.base import Widget
@@ -60,6 +61,7 @@ class MultilineTextInput(Widget):
         self.native.interface = self.interface
         self.native.impl = self
         self.native.delegate = self.native
+        self.native.autocorrectionType = UITextAutocorrectionType.Default
 
         # Placeholder isn't natively supported, so we create our own
         self.placeholder_label = UILabel.alloc().init()
@@ -158,3 +160,16 @@ class MultilineTextInput(Widget):
 
     def scroll_to_top(self):
         self.native.scrollRangeToVisible(NSRange(0, 0))
+
+    def set_autocorrection_type(self, value):
+        if isinstance(value, str):
+            if value.lower() == "yes":
+                self.native.autocorrectionType = UITextAutocorrectionType.Yes
+            elif value.lower() == "no":
+                self.native.autocorrectionType = UITextAutocorrectionType.No
+            elif value.lower() == "default":
+                self.native.autocorrectionType = UITextAutocorrectionType.Default
+            else:
+                raise ValueError('value can only be "Yes", "No" or "Default"')
+        else:
+            raise ValueError('value can only be "Yes", "No" or "Default"')

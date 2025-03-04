@@ -2,6 +2,7 @@ import pytest
 
 import toga
 from toga.style import Pack
+from toga_iOS.libs import UITextAutocorrectionType  # For autocorrect toggle
 
 from .conftest import build_cleanup_test
 from .properties import (  # noqa: F401
@@ -96,3 +97,19 @@ async def test_scroll_position(widget, probe):
     # The scroll position back at the origin.
     # Due to scroll bounce etc, this might be slightly off 0
     assert probe.vertical_scroll_position == pytest.approx(0.0, abs=10)
+
+
+async def test_set_auto_correction_type(widget):
+    "Autocorrection setting for widget can be configured."
+
+    #  Autocorrection = "Default" (0)
+    widget.set_autocorrection_type("default")
+    assert widget.native.autocorrectionType == UITextAutocorrectionType.Default
+
+    # Autocorrection = "No" (1)
+    widget.set_autocorrection_type("no")
+    assert widget.native.autocorrectionType == UITextAutocorrectionType.No
+
+    # Autocorrection = "Yes" (2)
+    widget.set_autocorrection_type("yes")
+    assert widget.native.autocorrectionType == UITextAutocorrectionType.Yes

@@ -4,6 +4,7 @@ import pytest
 
 import toga
 from toga.constants import CENTER
+from toga_iOS.libs import UITextAutocorrectionType  # For autocorrect toggle
 
 from ..data import TEXTS
 from .conftest import build_cleanup_test
@@ -247,3 +248,19 @@ async def test_undo_redo(widget, probe):
     await probe.redraw(f"Widget value should be {text_1!r}")
     assert widget.value == text_1
     assert probe.value == text_1
+
+
+async def test_set_auto_correction_type(widget):
+    "Autocorrection setting for widget can be configured."
+
+    #  Autocorrection = "Default" (0)
+    widget.set_autocorrection_type("default")
+    assert widget.native.autocorrectionType == UITextAutocorrectionType.Default
+
+    # Autocorrection = "No" (1)
+    widget.set_autocorrection_type("no")
+    assert widget.native.autocorrectionType == UITextAutocorrectionType.No
+
+    # Autocorrection = "Yes" (2)
+    widget.set_autocorrection_type("yes")
+    assert widget.native.autocorrectionType == UITextAutocorrectionType.Yes

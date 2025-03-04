@@ -14,7 +14,9 @@ from toga_iOS.libs import (
     NSTextAlignment,
     UIKeyInput,
     UILabel,
+    UITextAutocapitalizationType,
     UITextAutocorrectionType,
+    UITextSpellCheckingType,
     UITextView,
 )
 from toga_iOS.widgets.base import Widget
@@ -173,3 +175,43 @@ class MultilineTextInput(Widget):
                 raise ValueError('value can only be "Yes", "No" or "Default"')
         else:
             raise ValueError('value can only be "Yes", "No" or "Default"')
+
+    def set_spellchecking_type(self, value):
+        if isinstance(value, str):
+            if value.lower() == "yes":
+                self.native.UITextSpellCheckingType = UITextSpellCheckingType.Yes
+            elif value.lower() == "no":
+                self.native.UITextSpellCheckingType = UITextSpellCheckingType.No
+            elif value.lower() == "default":
+                self.native.UITextSpellCheckingType = UITextSpellCheckingType.Default
+            else:
+                raise ValueError('value can only be "Yes", "No" or "Default"')
+        else:
+            raise ValueError('value can only be "Yes", "No" or "Default"')
+
+    def set_autocapitalization_type(self, value):
+        if isinstance(value, str):
+            if value.lower() == "none":
+                self.native.UITextAutocapitalizationType = (
+                    UITextAutocapitalizationType.none
+                )
+            elif value.lower() == "words":
+                self.native.UITextAutocapitalizationType = (
+                    UITextAutocapitalizationType.Words
+                )
+            elif value.lower() == "sentences":
+                self.native.UITextAutocapitalizationType = (
+                    UITextAutocapitalizationType.Sentences
+                )
+            elif value.lower() == "allcharacters":
+                self.native.UITextAutocapitalizationType = (
+                    UITextAutocapitalizationType.AllCharacters
+                )
+            else:
+                raise ValueError(
+                    'value can only be "none", "words", "sentences" or "allcharacters"'
+                )
+        else:
+            raise ValueError(
+                'value can only be "none", "words", "sentences" or "allcharacters"'
+            )

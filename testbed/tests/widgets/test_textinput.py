@@ -250,7 +250,7 @@ async def test_undo_redo(widget, probe):
     assert probe.value == text_1
 
 
-async def test_set_auto_correction_type(widget):
+async def test_ios_set_auto_correction_type(widget):
     "Autocorrection setting for widget can be configured."
 
     #  Autocorrection = "Default" (0)

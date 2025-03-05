@@ -17,6 +17,7 @@ from toga_iOS.libs import (
     UITextAutocorrectionType,
     UITextBorderStyle,
     UITextField,
+    UITextInlinePredictionType,
     UITextSpellCheckingType,
 )
 from toga_iOS.widgets.base import Widget
@@ -208,3 +209,16 @@ class TextInput(Widget):
             raise ValueError(
                 'value can only be "none", "words", "sentences" or "allcharacters"'
             )
+
+    def set_inlineprediction_type(self, value):
+        if isinstance(value, str):
+            if value.lower() == "yes":
+                self.native.inlinePredictionType = UITextInlinePredictionType.Yes
+            elif value.lower() == "no":
+                self.native.inlinePredictionType = UITextInlinePredictionType.No
+            elif value.lower() == "default":
+                self.native.inlinePredictionType = UITextInlinePredictionType.Default
+            else:
+                raise ValueError('value can only be "Yes", "No" or "Default"')
+        else:
+            raise ValueError('value can only be "Yes", "No" or "Default"')

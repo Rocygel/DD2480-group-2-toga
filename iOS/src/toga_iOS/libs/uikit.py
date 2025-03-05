@@ -489,6 +489,12 @@ class UITextAutocapitalizationType(Enum):
     AllCharacters = 3
 
 
+class UITextInlinePredictionType(Enum):
+    Default = 0
+    No = 1
+    Yes = 2
+
+
 ######################################################################
 # UITextView.h
 UITextView = ObjCClass("UITextView")

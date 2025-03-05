@@ -53,10 +53,6 @@ class TextInput(Widget):
 
         self.native.borderStyle = UITextBorderStyle.RoundedRect
 
-        self.native.autocorrectionType = UITextAutocorrectionType.Default
-
-        self.native.UITextSpellCheckingType = UITextSpellCheckingType.Default
-
         self.native.addTarget(
             self.native,
             action=SEL("textFieldDidChange:"),
@@ -180,11 +176,11 @@ class TextInput(Widget):
     def set_spellchecking_type(self, value):
         if isinstance(value, str):
             if value.lower() == "yes":
-                self.native.UITextSpellCheckingType = UITextSpellCheckingType.Yes
+                self.native.spellCheckingType = UITextSpellCheckingType.Yes
             elif value.lower() == "no":
-                self.native.UITextSpellCheckingType = UITextSpellCheckingType.No
+                self.native.spellCheckingType = UITextSpellCheckingType.No
             elif value.lower() == "default":
-                self.native.UITextSpellCheckingType = UITextSpellCheckingType.Default
+                self.native.spellCheckingType = UITextSpellCheckingType.Default
             else:
                 raise ValueError('value can only be "Yes", "No" or "Default"')
         else:
@@ -193,19 +189,15 @@ class TextInput(Widget):
     def set_autocapitalization_type(self, value):
         if isinstance(value, str):
             if value.lower() == "none":
-                self.native.UITextAutocapitalizationType = (
-                    UITextAutocapitalizationType.none
-                )
+                self.native.autocapitalizationType = UITextAutocapitalizationType.none
             elif value.lower() == "words":
-                self.native.UITextAutocapitalizationType = (
-                    UITextAutocapitalizationType.Words
-                )
+                self.native.autocapitalizationType = UITextAutocapitalizationType.Words
             elif value.lower() == "sentences":
-                self.native.UITextAutocapitalizationType = (
+                self.native.autocapitalizationType = (
                     UITextAutocapitalizationType.Sentences
                 )
             elif value.lower() == "allcharacters":
-                self.native.UITextAutocapitalizationType = (
+                self.native.autocapitalizationType = (
                     UITextAutocapitalizationType.AllCharacters
                 )
             else:

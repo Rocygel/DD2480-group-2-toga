@@ -14,6 +14,10 @@ from toga_iOS.libs import (
     NSTextAlignment,
     UIKeyInput,
     UILabel,
+    UITextAutocapitalizationType,
+    UITextAutocorrectionType,
+    UITextInlinePredictionType,
+    UITextSpellCheckingType,
     UITextView,
 )
 from toga_iOS.widgets.base import Widget
@@ -158,3 +162,65 @@ class MultilineTextInput(Widget):
 
     def scroll_to_top(self):
         self.native.scrollRangeToVisible(NSRange(0, 0))
+
+    def set_autocorrection_type(self, value):
+        if isinstance(value, str):
+            if value.lower() == "yes":
+                self.native.autocorrectionType = UITextAutocorrectionType.Yes
+            elif value.lower() == "no":
+                self.native.autocorrectionType = UITextAutocorrectionType.No
+            elif value.lower() == "default":
+                self.native.autocorrectionType = UITextAutocorrectionType.Default
+            else:
+                raise ValueError('value can only be "Yes", "No" or "Default"')
+        else:
+            raise ValueError('value can only be "Yes", "No" or "Default"')
+
+    def set_spellchecking_type(self, value):
+        if isinstance(value, str):
+            if value.lower() == "yes":
+                self.native.spellCheckingType = UITextSpellCheckingType.Yes
+            elif value.lower() == "no":
+                self.native.spellCheckingType = UITextSpellCheckingType.No
+            elif value.lower() == "default":
+                self.native.spellCheckingType = UITextSpellCheckingType.Default
+            else:
+                raise ValueError('value can only be "Yes", "No" or "Default"')
+        else:
+            raise ValueError('value can only be "Yes", "No" or "Default"')
+
+    def set_autocapitalization_type(self, value):
+        if isinstance(value, str):
+            if value.lower() == "none":
+                self.native.autocapitalizationType = UITextAutocapitalizationType.none
+            elif value.lower() == "words":
+                self.native.autocapitalizationType = UITextAutocapitalizationType.Words
+            elif value.lower() == "sentences":
+                self.native.autocapitalizationType = (
+                    UITextAutocapitalizationType.Sentences
+                )
+            elif value.lower() == "allcharacters":
+                self.native.autocapitalizationType = (
+                    UITextAutocapitalizationType.AllCharacters
+                )
+            else:
+                raise ValueError(
+                    'value can only be "none", "words", "sentences" or "allcharacters"'
+                )
+        else:
+            raise ValueError(
+                'value can only be "none", "words", "sentences" or "allcharacters"'
+            )
+
+    def set_inlineprediction_type(self, value):
+        if isinstance(value, str):
+            if value.lower() == "yes":
+                self.native.inlinePredictionType = UITextInlinePredictionType.Yes
+            elif value.lower() == "no":
+                self.native.inlinePredictionType = UITextInlinePredictionType.No
+            elif value.lower() == "default":
+                self.native.inlinePredictionType = UITextInlinePredictionType.Default
+            else:
+                raise ValueError('value can only be "Yes", "No" or "Default"')
+        else:
+            raise ValueError('value can only be "Yes", "No" or "Default"')

@@ -355,3 +355,63 @@ def test_is_valid(widget):
     assert widget.is_valid
     assert_action_not_performed(widget, "set_error")
     assert_action_performed_with(widget, "clear_error")
+
+
+def test_spellcheck():
+    # Spellchecking = "Default"
+    widget.set_spellchecking_type("default")
+    assert widget.spellchecking_type == "default"
+
+    # Spellchecking = "No"
+    widget.set_spellchecking_type("no")
+    assert widget.spellchecking_type == "no"
+
+    # Spellchecking = "Yes"
+    widget.set_spellchecking_type("yes")
+    assert widget.spellchecking_type == "yes"
+
+
+def test_autocapitalization():
+    # Autocapitalization = "none"
+    widget.set_autocapitalization_type("none")
+    assert widget.autocapitalization_type == "none"
+
+    # Autocapitalization = "Words"
+    widget.set_autocapitalation_type("words")
+    assert widget.autocapitalization_type == "words"
+
+    # Autocapitalization = "Sentences"
+    widget.set_autocapitalization_type("sentences")
+    assert widget.autocapitalization_type == "sentences"
+
+    # Autocapitalization = "AllCharacters" (3)
+    widget.set_autocapitalization_type("allcharacters")
+    assert widget.autocapitalization_type == "allcharacters"
+
+
+def test_autocorrect():
+    #  Autocorrection = "Default"
+    widget.set_autocorrection_type("default")
+    assert widget.autocorrection_type == "default"
+
+    # Autocorrection = "No"
+    widget.set_autocorrection_type("no")
+    assert widget.autocorrection_type == "no"
+
+    # Autocorrection = "Yes"
+    widget.set_autocorrection_type("yes")
+    assert widget.autocorrection_type == "yes"
+
+
+def test_inline_prediction():
+    # Inline prediction = "Default"
+    widget.set_inline_prediction_type("default")
+    assert widget.inline_prediction_type == "default"
+
+    # Inline prediction = "No"
+    widget.set_inline_prediction_type("no")
+    assert widget.inline_prediction_type == "no"
+
+    # Inline prediction = "Yes"
+    widget.set_inline_prediction_type("yes")
+    assert widget.inline_prediction_type == "yes"

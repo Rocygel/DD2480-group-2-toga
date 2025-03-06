@@ -4,6 +4,10 @@ import pytest
 
 import toga
 from toga.constants import CENTER
+from toga_iOS.libs import UITextAutocapitalizationType  # For autocapitalization toggle
+from toga_iOS.libs import UITextAutocorrectionType  # For autocorrect toggle
+from toga_iOS.libs import UITextInlinePredictionType  # For inline prediction toggle
+from toga_iOS.libs import UITextSpellCheckingType  # For spellcheck toggle
 
 from ..data import TEXTS
 from .conftest import build_cleanup_test
@@ -247,3 +251,81 @@ async def test_undo_redo(widget, probe):
     await probe.redraw(f"Widget value should be {text_1!r}")
     assert widget.value == text_1
     assert probe.value == text_1
+
+
+async def test_ios_set_auto_correction_type(widget):
+    "Autocorrection setting for widget can be configured."
+
+    # Autocorrection = "Default" (0)
+    widget.set_autocorrection_type("default")
+    assert widget.native.autocorrectionType == UITextAutocorrectionType.Default
+
+    # Autocorrection = "No" (1)
+    widget.set_autocorrection_type("no")
+    assert widget.native.autocorrectionType == UITextAutocorrectionType.No
+
+    # Autocorrection = "Yes" (2)
+    widget.set_autocorrection_type("yes")
+    assert widget.native.autocorrectionType == UITextAutocorrectionType.Yes
+
+
+async def test_ios_set_spellchecking_type(widget):
+    "Spellchecking setting for widget can be configured."
+
+    # Spellchecking = "Default" (0)
+    widget.set_spellchecking_type("default")
+    assert widget.native.UITextSpellCheckingType == UITextSpellCheckingType.Default
+
+    # Spellchecking = "No" (1)
+    widget.set_spellchecking_type("no")
+    assert widget.native.UITextSpellCheckingType == UITextSpellCheckingType.No
+
+    # Spellchecking = "Yes" (2)
+    widget.set_spellchecking_type("yes")
+    assert widget.native.UITextSpellCheckingType == UITextSpellCheckingType.Yes
+
+
+async def test_ios_set_autocapitalization_type(widget):
+    "Autocapitalization setting for widget can be configured."
+
+    # Autocapitalization = "none" (0)
+    widget.set_autocapitalization_type("none")
+    assert (
+        widget.native.UITextAutocapitalizationType == UITextAutocapitalizationType.none
+    )
+
+    # Autocapitalization = "Words" (1)
+    widget.set_autocapitalization_type("words")
+    assert (
+        widget.native.UITextAutocapitalizationType == UITextAutocapitalizationType.Words
+    )
+
+    # Autocapitalization = "Sentences" (2)
+    widget.set_autocapitalization_type("sentences")
+    assert (
+        widget.native.UITextAutocapitalizationType
+        == UITextAutocapitalizationType.Sentences
+    )
+
+    # Autocapitalization = "AllCharacters" (3)
+    widget.set_autocapitalization_type("allcharacters")
+    assert (
+        widget.native.UITextAutocapitalizationType
+        == UITextAutocapitalizationType.AllCharacters
+    )
+
+
+async def test_ios_set_inline_prediction(widget):
+    "Inline prediction setting for widget can be configured."
+
+    # Inline prediction = "Default" (0)
+    widget.set_inlineprediction_type("default")
+    assert widget.native.inlinePredictionType == UITextInlinePredictionType.Default
+
+    # Inline prediction = "No" (1)
+    widget.set_inlineprediction_type("no")
+    assert widget.native.inlinePredictionType == UITextInlinePredictionType.No
+
+    # Inline prediction = "Yes" (2)
+    widget.set_inlineprediction_type("yes")
+    assert widget.native.inlinePredictionType == UITextInlinePredictionType.Yes

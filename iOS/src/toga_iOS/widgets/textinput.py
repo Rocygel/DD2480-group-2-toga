@@ -54,6 +54,9 @@ class TextInput(Widget):
 
         self.native.borderStyle = UITextBorderStyle.RoundedRect
 
+        self.native.autocorrectionType = UITextAutocorrectionType.Yes
+        self.native.spellCheckingType = UITextSpellCheckingType.Yes
+
         self.native.addTarget(
             self.native,
             action=SEL("textFieldDidChange:"),
@@ -161,31 +164,35 @@ class TextInput(Widget):
     def is_valid(self):
         return self.error_label.isHidden()
 
-    def set_autocorrection_type(self, value):
-        if isinstance(value, str):
-            if value.lower() == "yes":
+    def set_disable_autocorrection(self, value):
+        if isinstance(value, bool):
+            if value:
                 self.native.autocorrectionType = UITextAutocorrectionType.Yes
-            elif value.lower() == "no":
+            else:
                 self.native.autocorrectionType = UITextAutocorrectionType.No
-            elif value.lower() == "default":
-                self.native.autocorrectionType = UITextAutocorrectionType.Default
-            else:
-                raise ValueError('value can only be "Yes", "No" or "Default"')
         else:
-            raise ValueError('value can only be "Yes", "No" or "Default"')
+            raise ValueError("value can only be a boolean")
 
-    def set_spellchecking_type(self, value):
-        if isinstance(value, str):
-            if value.lower() == "yes":
-                self.native.spellCheckingType = UITextSpellCheckingType.Yes
-            elif value.lower() == "no":
-                self.native.spellCheckingType = UITextSpellCheckingType.No
-            elif value.lower() == "default":
-                self.native.spellCheckingType = UITextSpellCheckingType.Default
-            else:
-                raise ValueError('value can only be "Yes", "No" or "Default"')
+    def get_disable_autocorrection(self):
+        if self.native.autocorrectionType == UITextAutocorrectionType.Yes:
+            return True
         else:
-            raise ValueError('value can only be "Yes", "No" or "Default"')
+            return False
+
+    def set_disable_spellcheck(self, value):
+        if isinstance(value, bool):
+            if value:
+                self.native.spellCheckingType = UITextSpellCheckingType.Yes
+            else:
+                self.native.spellCheckingType = UITextSpellCheckingType.No
+        else:
+            raise ValueError("value can only be a boolean")
+
+    def get_disable_spellcheck(self):
+        if self.native.spellCheckingType == UITextSpellCheckingType.Yes:
+            return True
+        else:
+            return False
 
     def set_autocapitalization_type(self, value):
         if isinstance(value, str):

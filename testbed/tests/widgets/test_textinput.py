@@ -247,3 +247,26 @@ async def test_undo_redo(widget, probe):
     await probe.redraw(f"Widget value should be {text_1!r}")
     assert widget.value == text_1
     assert probe.value == text_1
+
+
+async def test_android_disable_spell_check():
+    "The widget supports spell check disabling"
+
+    widget = toga.TextInput(value="Helli")
+    widget.set_disable_spellcheck(True)  # disables spell check
+    input_type = widget.native.getInputType()
+    TYPE_TEXT_FLAG_NO_SUGGESTIONS = 0x00080000
+
+    assert (
+        input_type & TYPE_TEXT_FLAG_NO_SUGGESTIONS
+    ) != 0, "Spell check is not disabled!"
+
+
+async def test_android_disable_autocorrect():
+    "The widget supports autocorrect disabling"
+
+    widget = toga.TextInput(value="Helli")
+    widget.set_disable_autocorrect(True)
+    widget._on_lose_focus()
+
+    assert widget.get_value() == "Helli"

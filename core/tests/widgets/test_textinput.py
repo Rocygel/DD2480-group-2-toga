@@ -358,20 +358,20 @@ def test_is_valid(widget):
 
 
 def test_spellcheck():
-    # Spellchecking = "No"
-    widget.set_spellchecking_type("no")
-    assert widget.spellchecking_type == "no"
+    # Spellchecking off
+    widget.set_spellcheck(False)
+    assert not widget.spellcheck
 
-    # Spellchecking = "Yes"
-    widget.set_spellchecking_type("yes")
-    assert widget.spellchecking_type == "yes"
+    # Spellchecking on
+    widget.set_spellcheck(True)
+    assert widget.spellcheck
 
 
 def test_autocorrect():
-    # Autocorrection = "No"
-    widget.set_autocorrection_type("no")
-    assert widget.autocorrection_type == "no"
+    # Autocorrection off
+    widget.set_autocorrect(False)
+    assert not widget.autocorrect
 
-    # Autocorrection = "Yes"
-    widget.set_autocorrection_type("yes")
-    assert widget.autocorrection_type == "yes"
+    # Autocorrection on
+    widget.set_autocorrect(True)
+    assert widget.autocorrect

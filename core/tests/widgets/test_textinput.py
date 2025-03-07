@@ -359,19 +359,19 @@ def test_is_valid(widget):
 
 def test_spellcheck():
     # Spellchecking off
-    widget.set_spellcheck(False)
+    widget.spellcheck = False
     assert not widget.spellcheck
 
     # Spellchecking on
-    widget.set_spellcheck(True)
+    widget.spellcheck = True
     assert widget.spellcheck
 
 
 def test_autocorrect():
     # Autocorrection off
-    widget.set_autocorrect(False)
+    widget.autocorrect = False
     assert not widget.autocorrect
 
     # Autocorrection on
-    widget.set_autocorrect(True)
+    widget.autocorrect = True
     assert widget.autocorrect

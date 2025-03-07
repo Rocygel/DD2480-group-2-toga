@@ -470,6 +470,31 @@ class UIKeyboardType(Enum):
     ASCIICapableNumberPad = 11
 
 
+class UITextAutocorrectionType(Enum):
+    Default = 0
+    No = 1
+    Yes = 2
+
+
+class UITextSpellCheckingType(Enum):
+    Default = 0
+    No = 1
+    Yes = 2
+
+
+class UITextAutocapitalizationType(Enum):
+    none = 0
+    Words = 1
+    Sentences = 2
+    AllCharacters = 3
+
+
+class UITextInlinePredictionType(Enum):
+    Default = 0
+    No = 1
+    Yes = 2
+
+
 ######################################################################
 # UITextView.h
 UITextView = ObjCClass("UITextView")

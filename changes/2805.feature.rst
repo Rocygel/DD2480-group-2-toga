@@ -1,0 +1,1 @@
+TextInput and MultilineTextInput now have an option to disable spell checking and autocorrection on mobile platforms.

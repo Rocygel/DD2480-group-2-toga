@@ -355,3 +355,23 @@ def test_is_valid(widget):
     assert widget.is_valid
     assert_action_not_performed(widget, "set_error")
     assert_action_performed_with(widget, "clear_error")
+
+
+def test_spellcheck():
+    # Spellchecking off
+    widget.set_spellcheck(False)
+    assert not widget.spellcheck
+
+    # Spellchecking on
+    widget.set_spellcheck(True)
+    assert widget.spellcheck
+
+
+def test_autocorrect():
+    # Autocorrection off
+    widget.set_autocorrect(False)
+    assert not widget.autocorrect
+
+    # Autocorrection on
+    widget.set_autocorrect(True)
+    assert widget.autocorrect

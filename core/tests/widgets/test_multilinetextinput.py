@@ -170,3 +170,23 @@ def test_on_change(widget):
 
     # Callback was invoked
     handler.assert_called_once_with(widget)
+
+
+def test_spellcheck():
+    # Spellchecking off
+    widget.set_spellcheck(False)
+    assert not widget.spellcheck
+
+    # Spellchecking on
+    widget.set_spellcheck(True)
+    assert widget.spellcheck
+
+
+def test_autocorrect():
+    # Autocorrection off
+    widget.set_autocorrect(False)
+    assert not widget.autocorrect
+
+    # Autocorrection on
+    widget.set_autocorrect(True)
+    assert widget.autocorrect

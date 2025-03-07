@@ -164,7 +164,7 @@ class TextInput(Widget):
     def is_valid(self):
         return self.error_label.isHidden()
 
-    def set_disable_autocorrection(self, value):
+    def set_autocorrect(self, value):
         if isinstance(value, bool):
             if value:
                 self.native.autocorrectionType = UITextAutocorrectionType.Yes
@@ -173,13 +173,13 @@ class TextInput(Widget):
         else:
             raise ValueError("value can only be a boolean")
 
-    def get_disable_autocorrection(self):
+    def get_autocorrect(self):
         if self.native.autocorrectionType == UITextAutocorrectionType.Yes:
             return True
         else:
             return False
 
-    def set_disable_spellcheck(self, value):
+    def set_spellchecker(self, value):
         if isinstance(value, bool):
             if value:
                 self.native.spellCheckingType = UITextSpellCheckingType.Yes
@@ -188,7 +188,7 @@ class TextInput(Widget):
         else:
             raise ValueError("value can only be a boolean")
 
-    def get_disable_spellcheck(self):
+    def get_spellchecker(self):
         if self.native.spellCheckingType == UITextSpellCheckingType.Yes:
             return True
         else:

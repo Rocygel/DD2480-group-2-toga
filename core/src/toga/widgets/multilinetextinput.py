@@ -93,15 +93,17 @@ class MultilineTextInput(Widget):
 
     @spellcheck.setter
     def spellcheck(self, value: object) -> None:
-        self._impl.set_spellcheck(bool(value))
+        if toga.platform in ["android", "iOS"]:
+            self._impl.set_spellcheck(bool(value))
 
     @property
     def autocorrect(self) -> bool:
-        self._impl.get_autocorrect()
+        return self._impl.get_autocorrect()
 
-    @autocorrect
+    @autocorrect.setter
     def autocorrect(self, value: object) -> None:
-        self._impl.set_autocorrect(bool(value))
+        if toga.platform in ["android", "iOS"]:
+            self._impl.set_autocorrect(bool(value))
 
     @property
     def value(self) -> str:

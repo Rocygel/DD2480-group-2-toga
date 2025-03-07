@@ -122,20 +122,22 @@ class TextInput(Widget):
         self._impl.set_readonly(bool(value))
 
     @property
-    def disable_Spellcheck(self) -> bool:
+    def spellcheck(self) -> bool:
         return self._impl.get_spellcheck()
 
-    @disable_Spellcheck.setter
-    def disable_Spellcheck(self, value: object) -> None:
-        self._impl.set_spellcheck(bool(value))
+    @spellcheck.setter
+    def spellcheck(self, value: object) -> None:
+        if toga.platform in ["android", "iOS"]:
+            self._impl.set_spellcheck(bool(value))
 
     @property
-    def autocorrect(self) -> None:
-        self._impl.get_autocorrect()
+    def autocorrect(self) -> bool:
+        return self._impl.get_autocorrect()
 
     @autocorrect.setter
-    def disable_AutoCorrect(self, value: object) -> None:
-        self._impl.set_autocorrect(bool(value))
+    def autocorrect(self, value: object) -> None:
+        if toga.platform in ["android", "iOS"]:
+            self._impl.set_autocorrect(bool(value))
 
     @property
     def placeholder(self) -> str:

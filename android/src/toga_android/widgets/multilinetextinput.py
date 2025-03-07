@@ -11,6 +11,12 @@ class MultilineTextInput(TextInput):
             InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE,
         )
 
+    def set_spellcheck(self, disable):
+        self.set_spellcheck(disable)
+
+    def set_autocorrect(self, disable):
+        self.set_autocorrect(disable)
+
     def _on_change(self):
         self.interface.on_change()
 
